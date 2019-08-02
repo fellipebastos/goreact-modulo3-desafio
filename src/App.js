@@ -1,7 +1,13 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-alert */
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import MapGL, { Marker } from 'react-map-gl';
+
+// Global Styles
+import GlobalStyle from './styles/global';
+
+// Import Components
+import UserList from './components/UserList';
 
 export default class Map extends Component {
   state = {
@@ -44,30 +50,34 @@ export default class Map extends Component {
   render() {
     const { viewport: viewpt } = this.state;
     return (
-      <MapGL
-        {...viewpt}
-        onClick={this.handleMapClick}
-        mapStyle="mapbox://styles/mapbox/basic-v9"
-        mapboxApiAccessToken="pk.eyJ1IjoiZGllZ28zZyIsImEiOiJjamh0aHc4em0wZHdvM2tyc3hqbzNvanhrIn0.3HWnXHy_RCi35opzKo8sHQ"
-        onViewportChange={viewport => this.setState({ viewport })}
-      >
-        <Marker
-          latitude={-23.5439948}
-          longitude={-46.6065452}
+      <Fragment>
+        <GlobalStyle />
+        <UserList />
+        <MapGL
+          {...viewpt}
           onClick={this.handleMapClick}
-          captureClick
+          mapStyle="mapbox://styles/mapbox/basic-v9"
+          mapboxApiAccessToken="pk.eyJ1IjoiZGllZ28zZyIsImEiOiJjamh0aHc4em0wZHdvM2tyc3hqbzNvanhrIn0.3HWnXHy_RCi35opzKo8sHQ"
+          onViewportChange={viewport => this.setState({ viewport })}
         >
-          <img
-            style={{
-              borderRadius: 100,
-              width: 48,
-              height: 48,
-            }}
-            src="https://avatars2.githubusercontent.com/u/2254731?v=4"
-            alt=""
-          />
-        </Marker>
-      </MapGL>
+          <Marker
+            latitude={viewpt.latitude}
+            longitude={viewpt.longitude}
+            onClick={this.handleMapClick}
+            captureClick
+          >
+            <img
+              style={{
+                borderRadius: 100,
+                width: 48,
+                height: 48,
+              }}
+              src="https://avatars2.githubusercontent.com/u/2254731?v=4"
+              alt=""
+            />
+          </Marker>
+        </MapGL>
+      </Fragment>
     );
   }
 }
