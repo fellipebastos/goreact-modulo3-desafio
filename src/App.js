@@ -1,7 +1,10 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-alert */
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
+import { Provider } from 'react-redux';
 import MapGL, { Marker } from 'react-map-gl';
+
+import store from './store';
 
 // Global Styles
 import GlobalStyle from './styles/global';
@@ -50,7 +53,7 @@ export default class Map extends Component {
   render() {
     const { viewport: viewpt } = this.state;
     return (
-      <Fragment>
+      <Provider store={store}>
         <GlobalStyle />
         <UserList />
         <MapGL
@@ -77,7 +80,7 @@ export default class Map extends Component {
             />
           </Marker>
         </MapGL>
-      </Fragment>
+      </Provider>
     );
   }
 }

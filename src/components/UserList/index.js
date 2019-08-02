@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 
+import { connect } from 'react-redux';
+
 // Import Styles
 import { Container, List } from './styles';
 
-export default class UserList extends Component {
+class UserList extends Component {
   state = {};
 
-  render() {
+  render(props) {
+    console.log(props);
+
     return (
       <Container>
         <List>
@@ -32,3 +36,9 @@ export default class UserList extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  users: state.users,
+});
+
+export default connect(mapStateToProps)(UserList);
