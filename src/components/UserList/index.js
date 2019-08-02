@@ -1,29 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
 // Import Styles
 import { Container, List } from './styles';
 
-class UserList extends Component {
-  state = {};
+const UserList = (props) => {
+  const { users } = props;
 
-  render(props) {
-    console.log(props);
-
-    return (
-      <Container>
-        <List>
-          <li>
-            <img
-              className="user-avatar"
-              src="https://avatars1.githubusercontent.com/u/35773455?v=4"
-              alt="Fellipe"
-            />
+  return (
+    <Container>
+      <List>
+        {users.map(user => (
+          <li key={user.id}>
+            <img className="user-avatar" src={user.avatar} alt={user.name} />
 
             <div className="user-info">
-              <span className="name">Fellipe Bastos</span>
-              <span className="login">fellipebastos</span>
+              <span className="name">{user.name}</span>
+              <span className="login">{user.login}</span>
             </div>
 
             <div className="user-action">
@@ -31,11 +26,22 @@ class UserList extends Component {
               <i className="view fa fa-angle-right" />
             </div>
           </li>
-        </List>
-      </Container>
-    );
-  }
-}
+        ))}
+      </List>
+    </Container>
+  );
+};
+
+UserList.propTypes = {
+  users: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      avatar: PropTypes.string,
+      name: PropTypes.string,
+      login: PropTypes.string,
+    }),
+  ).isRequired,
+};
 
 const mapStateToProps = state => ({
   users: state.users,
