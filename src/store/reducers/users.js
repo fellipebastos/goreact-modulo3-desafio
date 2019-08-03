@@ -1,14 +1,14 @@
-const INITIAL_STATE = [
-  {
-    id: 1,
-    avatar: 'https://avatars1.githubusercontent.com/u/35773455?v=4',
-    name: 'Fellipe Bastos',
-    login: 'fellipebastos',
-  },
-];
+const INITIAL_STATE = {
+  data: [],
+};
 
 export default function users(state = INITIAL_STATE, action) {
   switch (action.type) {
+    case 'user/ADD_SUCCESS':
+      return {
+        data: [...state.data, action.payload.data],
+      };
+
     default:
       return state;
   }
