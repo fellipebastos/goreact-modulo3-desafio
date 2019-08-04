@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 // Import Actions
-import * as ModalActions from '../../store/actions/modal';
-import * as UserActions from '../../store/actions/users';
+import { Creators as ModalActions } from '../../store/ducks/modal';
+import { Creators as UserActions } from '../../store/ducks/users';
 
 // Import Styles
 import { Container } from './styles';

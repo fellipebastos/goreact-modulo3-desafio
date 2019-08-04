@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 // Import Actions
-import * as ModalActions from '../../store/actions/modal';
+import { Creators as ModalActions } from '../../store/ducks/modal';
 
 // Import Styles
 // eslint-disable-next-line import/no-extraneous-dependencies
