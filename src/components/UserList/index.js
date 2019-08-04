@@ -56,6 +56,7 @@ UserList.propTypes = {
       }),
     ),
   }).isRequired,
+  userRemove: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
