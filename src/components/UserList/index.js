@@ -2,11 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+// Import Actions
+import * as UserActions from '../../store/actions/users';
 
 // Import Styles
 import { Container, List } from './styles';
 
-const UserList = ({ users }) => {
+const UserList = ({ users, userRemove }) => {
   if (users.data.length) {
     return (
       <Container>
@@ -21,7 +25,15 @@ const UserList = ({ users }) => {
               </div>
 
               <div className="user-action">
-                <i className="dismiss fa fa-times-circle" />
+                <button
+                  className="btn-icon"
+                  type="button"
+                  onClick={() => {
+                    userRemove(user);
+                  }}
+                >
+                  <i className="dismiss fa fa-times-circle" />
+                </button>
                 <i className="view fa fa-angle-right" />
               </div>
             </li>
@@ -50,4 +62,9 @@ const mapStateToProps = state => ({
   users: state.users,
 });
 
-export default connect(mapStateToProps)(UserList);
+const mapDispatchToProps = dispatch => bindActionCreators(UserActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(UserList);

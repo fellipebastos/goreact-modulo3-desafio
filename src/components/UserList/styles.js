@@ -59,8 +59,11 @@ export const List = styled.ul`
       }
 
       .dismiss {
-        margin-right: 30px;
         color: red;
+      }
+
+      .view {
+        margin-left: 30px;
       }
     }
 
